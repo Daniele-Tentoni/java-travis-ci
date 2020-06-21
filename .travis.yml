@@ -1,8 +1,12 @@
 language: java
 script:
-  - './gradlew clean build'
-
+- "./gradlew clean build"
+branches:
+  only:
+  - master
 deploy:
- provider: heroku
- api_key:
-  secure: "5cce18ec-c052-4e3d-9335-36708ca460b6"
+  provider: heroku
+  api_key:
+    secure: Sp+7YTUy13vHVZ2Q+yUhRJYMWp/HbwiCFmfDr3a8Q0c3eiAYY8UTkbWvfoUteiXMDkP/4F1oRmntGxPg7SqkFCP2zI+LX9upDP/1gyUwQ2uDuUgGtzAl95DJMJdx+8S0bJbDqXZZuOF3kccWLBaWCfOWSDk1UjS0jM4xoXoNFbarqxqiUZsHZFyR/XmlozRtfFaWOofsZb94cCORk5p0cFChOJeBQRuG640DYsktIaeNDmW6slrb71xPqo0dxBkGYTiIfIiav5OZGod0Qu5kZxwJ2YWI823hzuI2IKJdvQgvkuVbrfLkHe3AgpMH5xYF90NdSQYUubLgI2jMBjDiza3didYk6Fp2pSI+pf7kV7PWJi1gOi0BVcwOPGSoB/qL9fVRvk+xrTQNLdK1dsnCVqUdzY2HUOi1JkPWN3T7OBi8rJirTWfH3SOttWLoh8UzXVpcgBB2Ro/kOce1bd54Mq6MKL3Gp8TQTjRV4evhKBKcTz+QLFTKIl9xcYsB5xah2XxFAfaR/8HdQHDd1VkMss/N/U7ECl5WyDw3CXuSqoo6444YHDIZs9qXtPLdrNCfdcl30xImh1MOiY/D4wzO3cplSk2kaa3y81n/JTtXJPApHmFdY8zPGkdHyYuXF533iqmG3HVp2aQJSKQrxhUy19cKH+9TJnhKwiWgJ239ZnI=
+  app:
+    master: java-travis-ci
