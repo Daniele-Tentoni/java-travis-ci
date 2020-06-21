@@ -1,0 +1,13 @@
+.class
+.log
+.ctxt
+
+.jar
+!gradle-wrapper.jar
+
+.gradle
+build/
+
+gradle-app.settings
+
+.idea/
