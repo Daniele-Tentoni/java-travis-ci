@@ -1,3 +1,8 @@
 language: java
 script:
   - './gradlew clean build'
+
+deploy:
+ provider: heroku
+ api_key:
+  secure: "5cce18ec-c052-4e3d-9335-36708ca460b6"
