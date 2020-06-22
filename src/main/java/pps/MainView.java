@@ -15,7 +15,8 @@ public class MainView {
     private static final int APP_VERSION = 3;
 
     @GetMapping("/players")
-    public @ResponseBody Set<String> getPlayers() {
+    @ResponseBody
+    public Set<String> getPlayers() {
         return PlayerStore.instance().getPlayers();
     }
 

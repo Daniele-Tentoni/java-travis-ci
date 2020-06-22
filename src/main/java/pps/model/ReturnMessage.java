@@ -8,4 +8,12 @@ public class ReturnMessage {
         this.result = result;
         this.message = message;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public boolean getResult() {
+        return result;
+    }
 }
