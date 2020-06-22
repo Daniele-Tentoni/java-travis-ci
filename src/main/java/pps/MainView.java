@@ -11,7 +11,7 @@ import java.util.Set;
 @SpringBootApplication
 @RestController
 public class MainView {
-    private static final int APP_VERSION = 1;
+    private static final int APP_VERSION = 2;
 
     @GetMapping("/players")
     public Set<String> getPlayers() {
