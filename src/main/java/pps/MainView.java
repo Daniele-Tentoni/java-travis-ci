@@ -2,14 +2,25 @@ package pps;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.Set;
 
 @SpringBootApplication
 @RestController
 public class MainView {
+    @GetMapping("/players")
+    public Set<String> getPlayers() {
+        return PlayerStore.instance().getPlayers();
+    }
+
+    @GetMapping("/players/{studentName}")
+    public boolean addPlayer(@PathVariable("studentName") final String studentName){
+        PlayerStore.instance().addPlayer(studentName);
+        return true;
+    }
+
     @GetMapping("/info")
     public String info() {
         return "I'm a Spring Boot base microservice.";
