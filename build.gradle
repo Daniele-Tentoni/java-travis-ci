@@ -16,3 +16,8 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE')
     implementation('org.springframework.boot:spring-boot-starter-web')
 }
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
