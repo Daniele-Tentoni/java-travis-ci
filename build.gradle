@@ -5,6 +5,8 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 }
 
+mainClassName = 'pps.MainView'
+
 repositories {
     mavenCentral()
     jcenter()
