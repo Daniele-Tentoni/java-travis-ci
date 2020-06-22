@@ -48,17 +48,30 @@ public class MainView {
         return "I'm a Spring Boot base microservice. I'm running " + getVersion();
     }
 
-    @GetMapping("/take/{player}/{id}")
+    @GetMapping("/hello")
+    @ResponseBody
+    public String sayHello() {
+        System.out.println("Hello World!");
+        return "Hello, my world!";
+    }
+
+    @GetMapping("/version")
+    @ResponseBody
+    public int getVersion() {
+        return APP_VERSION;
+    }
+
+    @PutMapping("/take/{player}/{id}")
     @ResponseBody
     public boolean take(@PathVariable("player") String player, @PathVariable("id") int id) {
         PuzzleStore.instance().take(player, id);
         return true;
     }
 
-    @GetMapping("/move/{player}/{id}/{x}/{y}")
+    @PutMapping("/move/{player}/{first}/{second}")
     @ResponseBody
-    public boolean move(@PathVariable("player") String player, @PathVariable("id") int id, @PathVariable("x") int x, @PathVariable("y") int y) {
-        PuzzleStore.instance().move(player, id, x, y);
+    public boolean move(@PathVariable("player") String player, @PathVariable("first") int first, @PathVariable("second") int second) {
+        PuzzleStore.instance().move(player, first, second);
         return true;
     }
 
@@ -76,19 +89,6 @@ public class MainView {
     public @ResponseBody byte[] getPuzzleImage() {
         return PuzzleStore.instance()
     }*/
-
-    @GetMapping("/hello")
-    @ResponseBody
-    public String sayHello() {
-        System.out.println("Hello World!");
-        return "Hello, my world!";
-    }
-
-    @GetMapping("/version")
-    @ResponseBody
-    public int getVersion() {
-        return APP_VERSION;
-    }
 
     public static void main(String[] args) {
         final SpringApplication app = new SpringApplication(MainView.class);

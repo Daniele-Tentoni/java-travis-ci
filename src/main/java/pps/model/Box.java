@@ -2,16 +2,17 @@ package pps.model;
 
 import java.util.Optional;
 
-public class Box {
+public class Box implements Comparable<Box> {
     int id;
     Optional<String> taken;
-    int x, y;
+    private final int originalPosition;
+    private int currentPosition;
 
-    public Box(int id, int x, int y) {
+    public Box(final int id, final int originalPosition, final int currentPosition) {
         taken = Optional.empty();
         this.id = id;
-        this.x = x;
-        this.y = y;
+        this.originalPosition = originalPosition;
+        this.currentPosition = currentPosition;
     }
 
     public int getId() {
@@ -26,21 +27,25 @@ public class Box {
         return taken.isPresent();
     }
 
-    public int getX() {
-        return x;
+    public int getCurrentPosition() {
+        return currentPosition;
     }
 
-    public int getY() {
-        return y;
+    public boolean isInRightPlace() {
+        return currentPosition == originalPosition;
     }
 
-    public void move(String player, int x, int y) {
+    public void setCurrentPosition(final String player, final int newPosition) {
         taken.ifPresent(p -> {
             if(p.equals(player)) {
-                this.y = y;
-                this.x = x;
+                currentPosition = newPosition;
                 taken = Optional.empty();
             }
         });
+    }
+
+    @Override
+    public int compareTo(Box other) {
+        return Integer.compare(this.currentPosition, other.currentPosition);
     }
 }
