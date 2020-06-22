@@ -2,10 +2,9 @@ package pps;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pps.model.Box;
+import pps.model.ReturnMessage;
 
 import java.util.Collections;
 import java.util.Set;
@@ -20,10 +19,24 @@ public class MainView {
         return PlayerStore.instance().getPlayers();
     }
 
-    @GetMapping("/players/{studentName}")
-    public boolean addPlayer(@PathVariable("studentName") final String studentName){
-        PlayerStore.instance().addPlayer(studentName);
-        return true;
+    @PostMapping("/players")
+    public ReturnMessage addPlayer(@RequestBody final String studentName) {
+        try {
+            PlayerStore.instance().addPlayer(studentName);
+            return new ReturnMessage(true, "Player added");
+        } catch (Exception e) {
+            return new ReturnMessage(false, e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/players/{name}")
+    public ReturnMessage deletePlayer(@PathVariable("name") final String name) {
+        try {
+            PlayerStore.instance().deletePlayer(name);
+            return new ReturnMessage(true, "Player removed");
+        } catch (Exception e) {
+            return new ReturnMessage(false, e.getMessage());
+        }
     }
 
     @GetMapping("/info")
@@ -48,9 +61,6 @@ public class MainView {
         return PuzzleStore.instance().getBoxes();
     }
 
-    /**
-     * JavaDoc comment for Say Hello function.
-     */
     @GetMapping("/hello")
     public String sayHello() {
         System.out.println("Hello World!");
