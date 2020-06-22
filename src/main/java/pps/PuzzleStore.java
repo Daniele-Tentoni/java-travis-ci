@@ -2,8 +2,12 @@ package pps;
 
 import pps.model.Box;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.awt.*;
+import java.awt.image.CropImageFilter;
+import java.awt.image.FilteredImageSource;
+import java.util.*;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class PuzzleStore {
     private static PuzzleStore singleton;
@@ -14,19 +18,19 @@ public class PuzzleStore {
         return singleton;
     }
 
-    private final Set<Box> cells;
+    final Set<Box> cells;
+    final int rows, columns;
 
     private PuzzleStore() {
         this.cells = new HashSet<>();
-        cells.add(new Box(0, 0, 0));
-        cells.add(new Box(1, 1, 0));
-        cells.add(new Box(2, 0, 1));
-        cells.add(new Box(3, 1, 1));
+        this.rows = 3;
+        this.columns = 5;
+        generatePuzzle();
     }
 
     public void take(String player, int id) {
         cells.stream().filter(f -> f.getId() == id).findFirst().ifPresent(p -> {
-            if(!p.isTaken())
+            if (!p.isTaken())
                 p.take(player);
         });
     }
@@ -37,5 +41,21 @@ public class PuzzleStore {
 
     public Set<Box> getBoxes() {
         return cells;
+    }
+
+    public boolean isGenerated() {
+        return !cells.isEmpty();
+    }
+
+    public void generatePuzzle() {
+        final List<Integer> randomPositions = new ArrayList<>();
+        IntStream.range(0, rows * columns).forEach(randomPositions::add);
+        Collections.shuffle(randomPositions);
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                cells.add(new Box(i * columns + columns, rows, columns));
+            }
+        }
     }
 }
