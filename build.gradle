@@ -5,6 +5,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 }
 
+// This property is needed on Heroku to find the main class.
 mainClassName = 'pps.MainView'
 
 repositories {
