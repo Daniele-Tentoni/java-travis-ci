@@ -11,6 +11,10 @@ mainClassName = 'pps.MainView'
 group 'org.example'
 version '1.0.1'
 
+java {
+    withJavadocJar()
+}
+
 repositories {
     mavenCentral()
     jcenter()
