@@ -2,16 +2,14 @@ package pps;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.web.bind.annotation.*;
 import pps.model.Box;
 
-import java.util.Collections;
 import java.util.Set;
 
 @SpringBootApplication
 @RestController
-public class MainView extends SpringBootServletInitializer {
+public class MainView {
     private static final int APP_VERSION = 3;
 
     @GetMapping("/info")
