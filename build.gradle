@@ -12,7 +12,10 @@ java {
     withJavadocJar()
 }
 
+// The jar block specifies how the JAR file will be named. In this case, it will render java-travis-ci-1.0.jar.
 jar {
+    baseName('java-travis-ci')
+    version('1.0')
     manifest{
         attributes 'Main-Class': 'pps.MainView'
     }
