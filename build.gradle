@@ -8,9 +8,6 @@ plugins {
 // This property is needed on Heroku to find the main class.
 mainClassName = 'pps.MainView'
 
-group 'org.example'
-version '1.0.1'
-
 java {
     withJavadocJar()
 }
