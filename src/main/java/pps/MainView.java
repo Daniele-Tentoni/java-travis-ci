@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.web.bind.annotation.*;
 import pps.model.Box;
-import pps.model.ReturnMessage;
 
 import java.util.Collections;
 import java.util.Set;
@@ -14,34 +13,6 @@ import java.util.Set;
 @RestController
 public class MainView extends SpringBootServletInitializer {
     private static final int APP_VERSION = 3;
-
-    @GetMapping("/players")
-    @ResponseBody
-    public Set<String> getPlayers() {
-        return PlayerStore.instance().getPlayers();
-    }
-
-    @PostMapping("/players")
-    @ResponseBody
-    public ReturnMessage addPlayer(@RequestBody final String studentName) {
-        try {
-            PlayerStore.instance().addPlayer(studentName);
-            return new ReturnMessage(true, "Player added");
-        } catch (Exception e) {
-            return new ReturnMessage(false, e.getMessage());
-        }
-    }
-
-    @DeleteMapping("/players/{name}")
-    @ResponseBody
-    public ReturnMessage deletePlayer(@PathVariable("name") final String name) {
-        try {
-            PlayerStore.instance().deletePlayer(name);
-            return new ReturnMessage(true, "Player removed");
-        } catch (Exception e) {
-            return new ReturnMessage(false, e.getMessage());
-        }
-    }
 
     @GetMapping("/info")
     @ResponseBody
