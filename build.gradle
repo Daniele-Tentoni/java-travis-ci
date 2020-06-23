@@ -15,6 +15,12 @@ java {
     withJavadocJar()
 }
 
+jar {
+    manifest{
+        attributes 'Main-Class': 'pps.MainView'
+    }
+}
+
 repositories {
     mavenCentral()
     jcenter()
