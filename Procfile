@@ -1,0 +1,1 @@
+java $JAVA_OPTS -jar build/libs/java-travis-ci.jar
