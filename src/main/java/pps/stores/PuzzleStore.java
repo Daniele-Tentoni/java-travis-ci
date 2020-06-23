@@ -14,9 +14,9 @@ public class PuzzleStore {
         return singleton;
     }
 
-    final Set<Box> tiles;
-    boolean finished;
-    final int rows, columns;
+    private final Set<Box> tiles;
+    private boolean finished;
+    private final int rows, columns;
 
     private PuzzleStore() {
         this.tiles = new HashSet<>();
@@ -53,6 +53,10 @@ public class PuzzleStore {
         return !tiles.isEmpty();
     }
 
+    public boolean isFinished() {
+        return finished;
+    }
+
     public void generatePuzzle() {
         int position = 0;
 
@@ -62,7 +66,7 @@ public class PuzzleStore {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                tiles.add(new Box( i * columns + columns, position, randomPositions.get(position)));
+                tiles.add(new Box( i * columns + j, position, randomPositions.get(position)));
                 position++;
             }
         }
