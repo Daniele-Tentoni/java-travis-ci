@@ -1,30 +1,33 @@
 package pps.model;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BoxTests {
     Box box;
 
-    @Before public void before() {
+    @BeforeEach
+    public void before() {
         this.box = new Box(0, 0, 0);
     }
 
-    @Test public void testTake() {
-        Assert.assertFalse(this.box.isTaken());
+    @Test
+    public void testTake() {
+        assertFalse(this.box.isTaken());
         this.box.take("daniele");
-        Assert.assertTrue(this.box.isTaken());
+        assertTrue(this.box.isTaken());
     }
 
     @Test public void testMove() {
-        Assert.assertEquals(0, this.box.getCurrentPosition());
+        assertEquals(0, this.box.getCurrentPosition());
         this.box.take("daniele");
         this.box.setCurrentPosition("daniele", 1);
-        Assert.assertEquals(1, this.box.getCurrentPosition());
+        assertEquals(1, this.box.getCurrentPosition());
     }
 
     @Test public void testIsInRightPlace() {
-        Assert.assertTrue(this.box.isInRightPlace());
+        assertTrue(this.box.isInRightPlace());
     }
 }
