@@ -2,17 +2,18 @@
 <html>
 <head>
     <title>Java Travis CI</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <p>Finally the application is on.</p>
 <table>
+    <caption>Player</caption>
     <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Method</th>
-            <th>Endpoint</th>
-        </tr>
+    <tr>
+        <th>Name</th>
+        <th>Method</th>
+        <th>Endpoint</th>
+    </tr>
     </thead>
     <tbody>
     <tr>
@@ -29,6 +30,55 @@
         <td>Delete Player</td>
         <td>DELETE</td>
         <td>/players/{name}</td>
+    </tr>
+    </tbody>
+</table>
+<table>
+    <caption>Puzzle</caption>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Method</th>
+        <th>Endpoint</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Take a box</td>
+        <td>PUT</td>
+        <td>/take/{player}/{id}</td>
+    </tr>
+    <tr>
+        <td>Move a box to another box</td>
+        <td>PUT</td>
+        <td>/move/{player}/{first}/{second}</td>
+    </tr>
+    <tr>
+        <td>Get the complete mappingr</td>
+        <td>PUT</td>
+        <td>/mapping</td>
+    </tr>
+    </tbody>
+</table>
+<table>
+    <caption>GameState</caption>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Method</th>
+        <th>Endpoint</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Get the game state.
+        <ul>
+            <li>Finished if the game is finished.</li>
+            <li>Generated if the game is only generated.</li>
+            <li>Nothing if the game is broken.</li>
+        </ul></td>
+        <td>GET</td>
+        <td>/state</td>
     </tr>
     </tbody>
 </table>
