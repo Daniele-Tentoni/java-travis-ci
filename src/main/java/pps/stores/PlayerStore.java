@@ -1,4 +1,4 @@
-package pps;
+package pps.stores;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -49,5 +49,9 @@ public class PlayerStore {
      */
     public void deletePlayer(String name) {
         players.stream().filter(f -> f.equals(name)).findFirst().ifPresent(players::remove);
+    }
+
+    public void reset() {
+        players.clear();
     }
 }

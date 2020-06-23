@@ -1,7 +1,7 @@
 package pps.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import pps.PlayerStore;
+import pps.stores.PlayerStore;
 import pps.model.ReturnMessage;
 
 import java.util.Set;

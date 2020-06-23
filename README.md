@@ -1,1 +1,2 @@
 # java-travis-ci
+Progetto realizzato per testare travis e heroku. Ho versato un bagno di sangue per farli funzionare entrambi per quel poco che dobbiamo fare noi. Adesso sembrano funzionare correttamente.

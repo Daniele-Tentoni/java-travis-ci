@@ -1,4 +1,4 @@
-package pps;
+package pps.stores;
 
 import pps.model.Box;
 
