@@ -1,1 +1,1 @@
-web: java -jar target/java-travis-ci.jar
+web: java -jar build/libs/java-travis-ci.jar
