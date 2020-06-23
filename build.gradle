@@ -13,12 +13,12 @@ java {
 }
 
 // The jar block specifies how the JAR file will be named. In this case, it will render java-travis-ci-1.0.jar.
-jar {
+/*jar {
     archivesBaseName = 'java-travis-ci'
     manifest{
         attributes 'Main-Class': 'pps.MainView'
     }
-}
+}*/
 
 repositories {
     mavenCentral()
@@ -28,6 +28,9 @@ repositories {
 dependencies {
     implementation('org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE')
     implementation('org.springframework.boot:spring-boot-starter-web')
+
+    testImplementation("junit:junit:4.13")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.6.2")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
