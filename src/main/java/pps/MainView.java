@@ -64,7 +64,7 @@ public class MainView extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         final SpringApplication app = new SpringApplication(MainView.class);
-        app.setDefaultProperties(Collections.singletonMap("server.port", "8081"));
+        // app.setDefaultProperties(Collections.singletonMap("server.port", "8081"));
         app.run(args);
     }
 }
