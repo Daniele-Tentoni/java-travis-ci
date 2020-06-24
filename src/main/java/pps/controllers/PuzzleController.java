@@ -4,13 +4,15 @@ import org.springframework.web.bind.annotation.*;
 import pps.stores.PuzzleStore;
 import pps.model.Box;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 public class PuzzleController {
     @PutMapping("/take/{player}/{id}")
     @ResponseBody
-    public boolean take(@PathVariable("player") String player, @PathVariable("id") int id) {
+    public boolean take(@PathVariable("player") final String player, @PathVariable("id") final int id) {
         PuzzleStore.instance().take(player, id);
         return true;
     }

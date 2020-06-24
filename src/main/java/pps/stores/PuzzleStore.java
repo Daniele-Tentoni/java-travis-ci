@@ -19,7 +19,7 @@ public class PuzzleStore {
     private final int rows, columns;
 
     private PuzzleStore() {
-        this.tiles = new HashSet<>();
+        this.tiles = new TreeSet<>();
         this.rows = 3;
         this.columns = 5;
         try {
