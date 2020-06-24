@@ -45,6 +45,10 @@ public class PuzzleStore {
         checkSolution();
     }
 
+    public void freeTiles(String name) {
+        tiles.stream().takeWhile(t -> t.isTaken(name)).forEach(e -> e.take(""));
+    }
+
     public Set<Box> getBoxes() {
         return tiles;
     }

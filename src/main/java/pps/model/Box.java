@@ -20,11 +20,15 @@ public class Box implements Comparable<Box> {
     }
 
     public void take(String id) {
-        taken = Optional.of(id);
+        taken = id.isEmpty() ? Optional.empty() : Optional.of(id);
     }
 
     public boolean isTaken() {
         return taken.isPresent();
+    }
+
+    public boolean isTaken(String id) {
+        return taken.isPresent() && taken.get().equals(id);
     }
 
     public int getCurrentPosition() {
@@ -39,7 +43,7 @@ public class Box implements Comparable<Box> {
         taken.ifPresent(p -> {
             if(p.equals(player)) {
                 currentPosition = newPosition;
-                taken = Optional.empty();
+                take("");
             }
         });
     }
