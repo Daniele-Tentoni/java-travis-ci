@@ -3,7 +3,6 @@ package pps.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +12,7 @@ public class BoxTests {
 
     @BeforeEach
     public void before() {
-        this.box = new Box(0, 0, 0);
+        this.box = new Box(0, 0);
     }
 
     @Test

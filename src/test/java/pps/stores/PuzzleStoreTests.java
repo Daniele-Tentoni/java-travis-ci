@@ -33,7 +33,7 @@ public class PuzzleStoreTests {
     @Test public void testTake() {
         PuzzleStore.instance().take("daniele", 0);
         Optional<Box> box = PuzzleStore.instance().getBoxes()
-                .stream().filter(f -> f.getId() == 0).findFirst();
+                .stream().filter(f -> f.getOriginalPosition() == 0).findFirst();
         assertTrue(box.isPresent());
         assertTrue(box.get().isTaken());
     }
@@ -43,7 +43,7 @@ public class PuzzleStoreTests {
         PuzzleStore.instance().move("daniele", 0, 1);
 
         Optional<Box> box = PuzzleStore.instance().getBoxes()
-                .stream().filter(f -> f.getId() == 0).findFirst();
+                .stream().filter(f -> f.getOriginalPosition() == 0).findFirst();
         assertTrue(box.isPresent());
         assertFalse(box.get().isTaken());
     }
