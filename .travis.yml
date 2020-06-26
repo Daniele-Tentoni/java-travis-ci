@@ -2,11 +2,22 @@ language: java
 jdk:
   - oraclejdk11
   - openjdk11
-script:
-  - "./gradlew clean build jacocoTestReport"
+
+jobs:
+  include:
+    - stage: "Tests"                # naming the Tests stage
+      name: "Unit Tests"            # names the first Tests stage job
+      script: ./gradlew clean build jacocoTestReport
+      jdk: openjdk11
+    - stage: "Tests oracle"
+      name: "Oracle Jacoco Test Report"
+      script: ./gradlew clean build jacocoTestReport
+      jdk: oraclejdk11
+
 branches:
   only:
   - master
+
 deploy:
   provider: heroku
   api_key:
