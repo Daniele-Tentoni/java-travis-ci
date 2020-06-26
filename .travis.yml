@@ -1,16 +1,13 @@
 language: java
-jdk:
-  - oraclejdk11
-  - openjdk11
 
 jobs:
   include:
     - stage: "Tests"                # naming the Tests stage
-      name: "Unit Tests"            # names the first Tests stage job
+      name: "Test with OpenJDK"            # names the first Tests stage job
       script: ./gradlew clean build jacocoTestReport
       jdk: openjdk11
-    - stage: "Tests oracle"
-      name: "Oracle Jacoco Test Report"
+    - stage: "Tests"
+      name: "Test with OracleJDK"
       script: ./gradlew clean build jacocoTestReport
       jdk: oraclejdk11
 
