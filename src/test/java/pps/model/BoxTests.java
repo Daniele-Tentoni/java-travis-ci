@@ -15,11 +15,29 @@ public class BoxTests {
         this.box = new Box(0, 0);
     }
 
+    @Test public void testSetCurrentPositionNotTaken() {
+        assertEquals(0, box.getCurrentPosition());
+        box.setCurrentPosition("daniele", 1);
+        assertEquals(0, box.getCurrentPosition());
+    }
+
+    @Test public void testSetCurrentPositionTaken() {
+        assertEquals(0, box.getCurrentPosition());
+        box.take("daniele");
+        box.setCurrentPosition("stefano", 1);
+        assertNotEquals(1, box.getCurrentPosition());
+        box.setCurrentPosition("daniele", 1);
+        assertEquals(1, box.getCurrentPosition());
+    }
+
     @Test
     public void testTake() {
-        assertFalse(this.box.isTaken());
-        this.box.take("daniele");
-        assertTrue(this.box.isTaken());
+        assertFalse(box.isTaken());
+        assertFalse(box.isTaken("daniele"));
+        box.take("daniele");
+        assertTrue(box.isTaken());
+        assertTrue(box.isTaken("daniele"));
+        assertFalse(box.isTaken("stefano"));
     }
 
     @Test public void testMove() {

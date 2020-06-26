@@ -38,6 +38,20 @@ public class PuzzleStoreTests {
         assertTrue(box.get().isTaken());
     }
 
+    @Test public void testRelease() {
+        PuzzleStore.instance().take("daniele", 1);
+        Optional<Box> box = PuzzleStore.instance().getBoxes()
+                .stream().filter(f -> f.getOriginalPosition() == 1).findFirst();
+        assertTrue(box.isPresent());
+        assertTrue(box.get().isTaken());
+
+        PuzzleStore.instance().release("daniele", 1);
+        box = PuzzleStore.instance().getBoxes()
+                .stream().filter(f -> f.getOriginalPosition() == 1).findFirst();
+        assertTrue(box.isPresent());
+        assertFalse(box.get().isTaken());
+    }
+
     @Test public void testMove() {
         PuzzleStore.instance().take("daniele", 0);
         PuzzleStore.instance().move("daniele", 0, 1);

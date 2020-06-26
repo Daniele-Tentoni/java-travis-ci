@@ -31,8 +31,15 @@ public class PuzzleStore {
 
     public void take(String player, int id) {
         tiles.stream().filter(f -> f.getOriginalPosition() == id).findFirst().ifPresent(p -> {
-            if (!p.isTaken())
+            if (!p.isTaken(player))
                 p.take(player);
+        });
+    }
+
+    public void release(String player, int id) {
+        tiles.stream().filter(f -> f.getOriginalPosition() == id).findFirst().ifPresent(p -> {
+            if(p.isTaken(player))
+                p.take("");
         });
     }
 

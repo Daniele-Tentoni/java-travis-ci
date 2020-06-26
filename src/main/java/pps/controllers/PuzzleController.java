@@ -2,6 +2,7 @@ package pps.controllers;
 
 import org.springframework.web.bind.annotation.*;
 import pps.model.Box;
+import pps.model.ReturnMessage;
 import pps.stores.PuzzleStore;
 
 import java.util.Set;
@@ -10,8 +11,18 @@ import java.util.Set;
 public class PuzzleController {
     @PutMapping("/take/{player}/{id}")
     @ResponseBody
-    public boolean take(@PathVariable("player") final String player, @PathVariable("id") final int id) {
-        PuzzleStore.instance().take(player, id);
+    public ReturnMessage take(@PathVariable("player") final String player, @PathVariable("id") final int id) {
+        try {
+            PuzzleStore.instance().take(player, id);
+            return new ReturnMessage(true, String.format("Player %s taken %s tile", player, id));
+        } catch (Exception e) {
+            return new ReturnMessage(false, e.getMessage());
+        }
+    }
+
+    @PutMapping("/release/{player}/{id}")
+    public boolean release(@PathVariable("player") final String player, @PathVariable("id") final int id) {
+        PuzzleStore.instance().release(player, id);
         return true;
     }
 

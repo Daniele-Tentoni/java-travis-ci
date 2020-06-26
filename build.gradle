@@ -5,6 +5,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 }
 
+apply plugin: 'jacoco'
+
+
 // This property is needed on Heroku to find the main class.
 mainClassName = 'pps.MainView'
 
@@ -40,4 +43,10 @@ sourceCompatibility = '11'
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // Each test run execute jacoco too.
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/customJacocoReportDir")
 }
