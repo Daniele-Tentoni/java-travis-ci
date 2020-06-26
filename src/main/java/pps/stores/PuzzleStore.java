@@ -45,11 +45,13 @@ public class PuzzleStore {
 
     public void move(String player, int first, int second) {
         tiles.stream()
-                .filter(f -> f.getOriginalPosition() == first)
+                .filter(f -> f.getOriginalPosition() == first
+                && f.isTaken(player))
                 .findFirst()
                 .ifPresent(p ->
                         tiles.stream()
-                                .filter(g -> g.getOriginalPosition() == second)
+                                .filter(g -> g.getOriginalPosition() == second
+                                && !g.isTaken())
                                 .findFirst()
                                 .ifPresent(q -> {
                                     int pos = p.getCurrentPosition();

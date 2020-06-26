@@ -5,6 +5,7 @@ import pps.model.Box;
 import pps.model.ReturnMessage;
 import pps.stores.PuzzleStore;
 
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -21,9 +22,29 @@ public class PuzzleController {
     }
 
     @PutMapping("/release/{player}/{id}")
-    public boolean release(@PathVariable("player") final String player, @PathVariable("id") final int id) {
-        PuzzleStore.instance().release(player, id);
-        return true;
+    @ResponseBody
+    public ReturnMessage release(@PathVariable("player") final String player, @PathVariable("id") final int id) {
+        try {
+            PuzzleStore.instance().release(player, id);
+            return new ReturnMessage(true, String.format("Player %s released %s tile", player, id));
+        } catch (Exception e) {
+            return new ReturnMessage(false, e.getMessage());
+        }
+    }
+
+    @GetMapping("/state/{player}/{id}")
+    @ResponseBody
+    public ReturnMessage getState(@PathVariable("player") final String player, @PathVariable("id") final int id) {
+        try {
+            Optional<Box> box = PuzzleStore.instance().getBoxes().stream()
+                    .filter(f -> f.getOriginalPosition() == id)
+                    .findFirst();
+            return box
+                    .map(value -> new ReturnMessage(true, String.valueOf(value.isTaken(player))))
+                    .orElseGet(() -> new ReturnMessage(false, "Tile not found"));
+        } catch (Exception e) {
+            return new ReturnMessage(false, e.getMessage());
+        }
     }
 
     @PutMapping("/move/{player}/{first}/{second}")
