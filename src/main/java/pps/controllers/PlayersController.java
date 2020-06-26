@@ -19,7 +19,9 @@ public class PlayersController {
     @ResponseBody
     public ReturnMessage addPlayer(@RequestBody final String studentName) {
         try {
-            PlayerStore.instance().addPlayer(studentName);
+            String tmp = studentName.replace("\"", "");
+            tmp = tmp.replace("\\", "");
+            PlayerStore.instance().addPlayer(tmp);
             return new ReturnMessage(true, "Player added");
         } catch (Exception e) {
             return new ReturnMessage(false, e.getMessage());
