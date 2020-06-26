@@ -1,12 +1,10 @@
 package pps.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import pps.stores.PuzzleStore;
 import pps.model.Box;
+import pps.stores.PuzzleStore;
 
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 public class PuzzleController {

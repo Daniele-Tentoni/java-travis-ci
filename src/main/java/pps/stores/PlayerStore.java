@@ -51,6 +51,9 @@ public class PlayerStore {
         players.stream().filter(f -> f.equals(name)).findFirst().ifPresent(players::remove);
     }
 
+    /**
+     * Reset the list of players.
+     */
     public void reset() {
         players.clear();
     }
