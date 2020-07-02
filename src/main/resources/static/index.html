@@ -82,13 +82,30 @@
     <tbody>
     <tr>
         <td>Get the game state.
-        <ul>
-            <li>Finished if the game is finished.</li>
-            <li>Generated if the game is only generated.</li>
-            <li>Nothing if the game is broken.</li>
-        </ul></td>
+            <ul>
+                <li>Finished if the game is finished.</li>
+                <li>Generated if the game is only generated.</li>
+                <li>Nothing if the game is broken.</li>
+            </ul></td>
         <td>GET</td>
         <td>/state</td>
+    </tr>
+    </tbody>
+</table>
+<table border="1">
+    <caption>Server state</caption>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Method</th>
+        <th>Endpoint</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Reset game state.</td>
+        <td>DELETE</td>
+        <td>/server/reset</td>
     </tr>
     </tbody>
 </table>
