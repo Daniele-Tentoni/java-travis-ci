@@ -1,5 +1,6 @@
 package pps.stores;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pps.model.Box;
@@ -10,14 +11,18 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PuzzleStoreTests {
+    @BeforeEach public void beforeEach() {
+
+    }
+
     @Test
     @DisplayName("Test basic instance")
     public void testInstance() {
-        PlayerStore store = PlayerStore.instance();
+        PuzzleStore store = PuzzleStore.instance();
         assertNotNull(store);
     }
 
-    @Test public void testIsGenerated(){
+    @Test public void testIsGenerated() {
         assertTrue(PuzzleStore.instance().isGenerated());
     }
 
@@ -36,6 +41,17 @@ public class PuzzleStoreTests {
                 .stream().filter(f -> f.getOriginalPosition() == 0).findFirst();
         assertTrue(box.isPresent());
         assertTrue(box.get().isTaken());
+        assertTrue(box.get().isTaken("daniele"));
+    }
+
+    @Test public void testTakeAlreadyTaken() {
+        PuzzleStore.instance().take("daniele", 0);
+        PuzzleStore.instance().take("stefano", 0);
+        Optional<Box> box = PuzzleStore.instance().getBoxes()
+                .stream().filter(f -> f.getOriginalPosition() == 0).findFirst();
+        assertTrue(box.isPresent());
+        assertTrue(box.get().isTaken());
+        assertFalse(box.get().isTaken("stefano"));
     }
 
     @Test public void testRelease() {

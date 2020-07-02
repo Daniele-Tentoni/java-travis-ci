@@ -27,6 +27,16 @@ public class PlayerStoreTests {
         assertEquals("daniele", player.get());
     }
 
+    @Test public void testAddExistingPlayer() {
+        testAddPlayers();
+        PlayerStore.instance().addPlayer("daniele");
+        Set<String> players = PlayerStore.instance().getPlayers();
+        Optional<String> player =
+                players.stream().filter(f -> f.equals("daniele")).findFirst();
+        assertTrue(player.isPresent());
+        assertEquals("daniele", player.get());
+    }
+
     @Test public void testDeletePlayers() {
         testAddPlayers();
         PlayerStore.instance().deletePlayer("daniele");

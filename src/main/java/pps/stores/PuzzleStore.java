@@ -14,24 +14,17 @@ public class PuzzleStore {
         return singleton;
     }
 
-    private final Set<Box> tiles;
+    private Set<Box> tiles;
     private boolean finished;
-    private final int rows, columns;
+    private int rows, columns;
 
     private PuzzleStore() {
-        this.tiles = new TreeSet<>();
-        this.rows = 3;
-        this.columns = 5;
-        try {
-            generatePuzzle();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        reset();
     }
 
     public void take(String player, int id) {
         tiles.stream().filter(f -> f.getOriginalPosition() == id).findFirst().ifPresent(p -> {
-            if (!p.isTaken(player))
+            if (!p.isTaken())
                 p.take(player);
         });
     }
@@ -90,6 +83,14 @@ public class PuzzleStore {
                 position++;
             }
         }
+    }
+
+    public void reset() {
+        this.tiles = new TreeSet<>();
+        this.rows = 3;
+        this.columns = 5;
+        this.finished = false;
+        generatePuzzle();
     }
 
     private void checkSolution() {
