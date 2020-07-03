@@ -45,7 +45,7 @@ public class Box implements Comparable<Box> {
         taken.ifPresent(p -> {
             if(p.equals(player)) {
                 currentPosition = newPosition;
-                take("");
+                taken = Optional.empty();
             }
         });
     }
