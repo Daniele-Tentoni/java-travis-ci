@@ -9,26 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class MainView {
-    private static final int APP_VERSION = 3;
-
-    @GetMapping("/info")
-    @ResponseBody
-    public String getInfo() {
-        return "I'm a Spring Boot base microservice. I'm running " + getVersion();
-    }
-
-    @GetMapping("/hello")
-    @ResponseBody
-    public String sayHello() {
-        System.out.println("Hello World!");
-        return "Hello, my world!";
-    }
-
-    @GetMapping("/version")
-    @ResponseBody
-    public int getVersion() {
-        return APP_VERSION;
-    }
 
     /*
     @GetMapping(

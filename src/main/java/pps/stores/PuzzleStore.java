@@ -31,7 +31,7 @@ public class PuzzleStore {
 
     public void release(String player, int id) {
         tiles.stream().filter(f -> f.getOriginalPosition() == id).findFirst().ifPresent(p -> {
-            if(p.isTaken(player))
+            if (p.isTaken(player))
                 p.take("");
         });
     }
@@ -39,12 +39,12 @@ public class PuzzleStore {
     public void move(String player, int first, int second) {
         tiles.stream()
                 .filter(f -> f.getOriginalPosition() == first
-                && f.isTaken(player))
+                        && f.isTaken(player))
                 .findFirst()
                 .ifPresent(p ->
                         tiles.stream()
                                 .filter(g -> g.getOriginalPosition() == second
-                                && !g.isTaken())
+                                        && !g.isTaken())
                                 .findFirst()
                                 .ifPresent(q -> {
                                     int pos = p.getCurrentPosition();
