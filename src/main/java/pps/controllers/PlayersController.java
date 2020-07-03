@@ -14,6 +14,7 @@ import java.util.Set;
 public class PlayersController {
     /**
      * Get all players of the current instance.
+     *
      * @return A set with all players.
      */
     @GetMapping("/players")
@@ -24,6 +25,7 @@ public class PlayersController {
 
     /**
      * Add a new player to the existing set of player in the current context.
+     *
      * @param name The name of the player.
      * @return A Return Message with the result of this operation.
      */
@@ -42,6 +44,7 @@ public class PlayersController {
 
     /**
      * Delete a player from the current context.
+     *
      * @param name The name of the player.
      * @return A Return Message with the result of this operation.
      */
