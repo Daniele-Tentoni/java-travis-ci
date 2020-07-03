@@ -25,6 +25,10 @@ public class Box implements Comparable<Box> {
         return taken.isPresent() && taken.get().equals(name);
     }
 
+    public String getTaker() {
+        return taken.orElse("");
+    }
+
     public int getCurrentPosition() {
         return currentPosition;
     }
