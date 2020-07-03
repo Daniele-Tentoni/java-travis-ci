@@ -78,4 +78,16 @@ public class PuzzleStoreTests {
         assertFalse(box.get().isTaken());
         assertNotEquals("daniele", box.get().getTaker());
     }
+
+    @Test public void testMoveAndNoMoreTaken() {
+        // Testa se dopo un movimento ci siano delle caselle che risultano ancora prese dal giocatore.
+        PuzzleStore.instance().take("daniele", 0);
+        PuzzleStore.instance().move("daniele", 0, 1);
+        PuzzleStore.instance().take("daniele", 3);
+        PuzzleStore.instance().move("daniele", 3, 6);
+
+        long count = PuzzleStore.instance().getBoxes().stream()
+                .filter(f -> f.isTaken("daniele")).count();
+        assertEquals(0, count);
+    }
 }

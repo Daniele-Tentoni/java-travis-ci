@@ -54,4 +54,13 @@ public class Box implements Comparable<Box> {
     public int compareTo(Box other) {
         return Integer.compare(this.currentPosition, other.currentPosition);
     }
+
+    @Override
+    public String toString() {
+        return "Box{" +
+                "taken=" + taken +
+                ", originalPosition=" + originalPosition +
+                ", currentPosition=" + currentPosition +
+                '}';
+    }
 }
