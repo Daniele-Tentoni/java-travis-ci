@@ -69,14 +69,29 @@ public class PuzzleStoreTests {
     }
 
     @Test public void testMove() {
+        Box b0 = getBox(0);
+        Box b1 = getBox(1);
+        int p0 = b0.getCurrentPosition();
+        int p1 = b1.getCurrentPosition();
+        assertNotEquals(p0, p1);
+        assertFalse(b0.isTaken());
+        assertFalse(b0.isTaken("daniele"));
+        assertFalse(b1.isTaken());
+        assertFalse(b1.isTaken("daniele"));
         PuzzleStore.instance().take("daniele", 0);
+        PuzzleStore.instance().take("daniele", 1);
+        assertTrue(b0.isTaken());
+        assertTrue(b0.isTaken("daniele"));
+        assertTrue(b1.isTaken());
+        assertTrue(b1.isTaken("daniele"));
         PuzzleStore.instance().move("daniele", 0, 1);
 
-        Optional<Box> box = PuzzleStore.instance().getBoxes()
-                .stream().filter(f -> f.getOriginalPosition() == 0).findFirst();
-        assertTrue(box.isPresent());
-        assertFalse(box.get().isTaken());
-        assertNotEquals("daniele", box.get().getTaker());
+        // After move.
+        assertFalse(b0.isTaken());
+        assertNotEquals("daniele", b0.getTaker());
+        assertNotEquals(p0, p1);
+        assertEquals(p0, b1.getCurrentPosition());
+        assertEquals(p1, b0.getCurrentPosition());
     }
 
     @Test public void testMoveAndNoMoreTaken() {
@@ -89,5 +104,10 @@ public class PuzzleStoreTests {
         long count = PuzzleStore.instance().getBoxes().stream()
                 .filter(f -> f.isTaken("daniele")).count();
         assertEquals(0, count);
+    }
+
+    private Box getBox(int index) {
+        return PuzzleStore.instance().getBoxes()
+                .stream().filter(f -> f.getOriginalPosition() == index).findFirst().get();
     }
 }

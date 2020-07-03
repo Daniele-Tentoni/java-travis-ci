@@ -44,7 +44,7 @@ public class PuzzleStore {
                 .ifPresent(p ->
                         tiles.stream()
                                 .filter(g -> g.getOriginalPosition() == second
-                                        && !g.isTaken())
+                                        && g.isTaken())
                                 .findFirst()
                                 .ifPresent(q -> {
                                     int pos = p.getCurrentPosition();
