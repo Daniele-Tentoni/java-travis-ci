@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PuzzleStoreTests {
     @BeforeEach public void beforeEach() {
-
+        PuzzleStore.instance().reset();
     }
 
     @Test
@@ -97,8 +97,10 @@ public class PuzzleStoreTests {
     @Test public void testMoveAndNoMoreTaken() {
         // Testa se dopo un movimento ci siano delle caselle che risultano ancora prese dal giocatore.
         PuzzleStore.instance().take("daniele", 0);
+        PuzzleStore.instance().take("daniele", 1);
         PuzzleStore.instance().move("daniele", 0, 1);
         PuzzleStore.instance().take("daniele", 3);
+        PuzzleStore.instance().take("daniele", 6);
         PuzzleStore.instance().move("daniele", 3, 6);
 
         long count = PuzzleStore.instance().getBoxes().stream()
