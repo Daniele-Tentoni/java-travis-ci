@@ -38,6 +38,7 @@ public class BoxTests {
         assertTrue(box.isTaken());
         assertTrue(box.isTaken("daniele"));
         assertFalse(box.isTaken("stefano"));
+        assertEquals("daniele", box.getTaker());
     }
 
     @Test public void testMove() {
