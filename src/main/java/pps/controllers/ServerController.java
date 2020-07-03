@@ -15,7 +15,7 @@ public class ServerController {
     /**
      * Reset the current context to start a new game.
      */
-    @DeleteMapping("server/reset")
+    @DeleteMapping("/server/reset")
     public void serverReset() {
         PlayerStore.instance().reset();
         PuzzleStore.instance().reset();
