@@ -16,9 +16,14 @@ public class ServerController {
      * Reset the current context to start a new game.
      */
     @DeleteMapping("/server/reset")
-    public void serverReset() {
-        PlayerStore.instance().reset();
-        PuzzleStore.instance().reset();
+    public boolean serverReset() {
+        try {
+            PlayerStore.instance().reset();
+            PuzzleStore.instance().reset();
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     /**

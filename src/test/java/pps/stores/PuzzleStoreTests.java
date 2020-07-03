@@ -76,5 +76,6 @@ public class PuzzleStoreTests {
                 .stream().filter(f -> f.getOriginalPosition() == 0).findFirst();
         assertTrue(box.isPresent());
         assertFalse(box.get().isTaken());
+        assertNotEquals("daniele", box.get().getTaker());
     }
 }
