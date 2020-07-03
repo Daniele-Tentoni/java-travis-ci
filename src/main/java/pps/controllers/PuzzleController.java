@@ -84,8 +84,8 @@ public class PuzzleController {
     public ReturnMessage move(@PathVariable("player") String player, @PathVariable("first") int first, @PathVariable("second") int second) {
         try {
             PuzzleStore.instance().move(player, first, second);
-            Box f = PuzzleStore.instance().getBoxes().stream().filter(f -> f.getOriginalPosition() == first).findFirst().get();
-            Box s = PuzzleStore.instance().getBoxes().stream().filter(f -> f.getOriginalPosition() == second).findFirst().get();
+            Box f = PuzzleStore.instance().getBoxes().stream().filter(e -> e.getOriginalPosition() == first).findFirst().get();
+            Box s = PuzzleStore.instance().getBoxes().stream().filter(e -> e.getOriginalPosition() == second).findFirst().get();
             return new ReturnMessage(true, "Boxes:" + f.toString() + "/" + s.toString());
         } catch (Exception ex) {
             return new ReturnMessage(false, ex.getMessage());
