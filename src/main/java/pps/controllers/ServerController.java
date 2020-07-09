@@ -1,9 +1,6 @@
 package pps.controllers;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pps.stores.PlayerStore;
 import pps.stores.PuzzleStore;
 
@@ -19,6 +16,16 @@ public class ServerController {
     public boolean serverReset() {
         try {
             PlayerStore.instance().reset();
+            PuzzleStore.instance().reset();
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    @PutMapping("/game/reset")
+    public boolean gameReset(){
+        try{
             PuzzleStore.instance().reset();
             return true;
         } catch (Exception ex) {
@@ -46,7 +53,7 @@ public class ServerController {
         return "Hello, my world!";
     }
 
-    private static final int APP_VERSION = 4;
+    private static final int APP_VERSION = 5;
 
     /**
      * Get the version of the application.

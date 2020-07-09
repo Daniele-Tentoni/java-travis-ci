@@ -16,4 +16,8 @@ public class ReturnMessage {
     public boolean getResult() {
         return result;
     }
+
+    public void setMessage(String message){
+        message = message;
+    }
 }

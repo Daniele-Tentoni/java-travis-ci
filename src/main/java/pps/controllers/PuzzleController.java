@@ -50,6 +50,27 @@ public class PuzzleController {
     }
 
     /**
+     * A player wanna move a tile and swap with another.
+     *
+     * @param player A player that wanna swap tiles.
+     * @param first  First tile to move.
+     * @param second Second tile to move.
+     * @return The Result Message of this operation.
+     */
+    @PutMapping("/move/{player}/{first}/{second}")
+    @ResponseBody
+    public ReturnMessage move(@PathVariable("player") String player, @PathVariable("first") int first, @PathVariable("second") int second) {
+        try {
+            PuzzleStore.instance().move(player, first, second);
+            Box f = PuzzleStore.instance().getBoxes().stream().filter(e -> e.getOriginalPosition() == first).findFirst().get();
+            Box s = PuzzleStore.instance().getBoxes().stream().filter(e -> e.getOriginalPosition() == second).findFirst().get();
+            return new ReturnMessage(true, "Boxes:" + f.toString() + "/" + s.toString());
+        } catch (Exception ex) {
+            return new ReturnMessage(false, ex.getMessage());
+        }
+    }
+
+    /**
      * A player wanna know the state of a tile.
      *
      * @param player Player caller.
@@ -68,27 +89,6 @@ public class PuzzleController {
                     .orElseGet(() -> new ReturnMessage(false, "Tile not found"));
         } catch (Exception e) {
             return new ReturnMessage(false, e.getMessage());
-        }
-    }
-
-    /**
-     * A player wanna move a tile and swap with another.
-     *
-     * @param player A player that wanna swap tiles.
-     * @param first  First tile to move.
-     * @param second Second tile to move.
-     * @return The Result Message of this operation.
-     */
-    @PutMapping("/move/{player}/{first}/{second}")
-    @ResponseBody
-    public ReturnMessage move(@PathVariable("player") String player, @PathVariable("first") int first, @PathVariable("second") int second) {
-        try {
-            PuzzleStore.instance().move(player, first, second);
-            Box f = PuzzleStore.instance().getBoxes().stream().filter(e -> e.getOriginalPosition() == first).findFirst().get();
-            Box s = PuzzleStore.instance().getBoxes().stream().filter(e -> e.getOriginalPosition() == second).findFirst().get();
-            return new ReturnMessage(true, "Boxes:" + f.toString() + "/" + s.toString());
-        } catch (Exception ex) {
-            return new ReturnMessage(false, ex.getMessage());
         }
     }
 
