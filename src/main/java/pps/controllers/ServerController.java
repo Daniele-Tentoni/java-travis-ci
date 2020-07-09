@@ -23,7 +23,7 @@ public class ServerController {
         }
     }
 
-    @PutMapping("/game/reset")
+    @DeleteMapping("/game/reset")
     public boolean gameReset(){
         try{
             PuzzleStore.instance().reset();
