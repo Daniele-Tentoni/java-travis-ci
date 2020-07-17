@@ -17,4 +17,12 @@ public class ReturnMessageTests {
         ReturnMessage result = new ReturnMessage(true, "Result");
         assertEquals("Result", result.getMessage());
     }
+
+    @Test public void getMessage() {
+        ReturnMessage msg = new ReturnMessage(true, "Result");
+        assertEquals("Result", msg.getMessage());
+        String newMsg = "Good result";
+        msg.setMessage(newMsg);
+        assertEquals(newMsg, msg.getMessage());
+    }
 }

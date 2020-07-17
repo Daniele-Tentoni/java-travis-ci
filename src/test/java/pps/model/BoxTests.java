@@ -51,4 +51,13 @@ public class BoxTests {
     @Test public void testIsInRightPlace() {
         assertTrue(this.box.isInRightPlace());
     }
+
+    @Test public void testToString() {
+        String msg = "Box{" +
+                "taken=" + false +
+                ", originalPosition=" + 0 +
+                ", currentPosition=" + 0 +
+                '}';
+        assertEquals("", this.box.toString());
+    }
 }
