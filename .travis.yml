@@ -4,7 +4,9 @@ jobs:
   include:
     - stage: "Test with OpenJDK"                # naming the Tests stage
       name: "Test with OpenJDK"            # names the first Tests stage job
-      script: ./gradlew clean build jacocoTestReport
+      script:
+        - ./gradlew clean build jacocoTestReport
+        - bash <(curl -s https://codecov.io/bash)
       jdk: openjdk11
 
 branches:
