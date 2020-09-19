@@ -18,6 +18,6 @@ public class ReturnMessage {
     }
 
     public void setMessage(String message){
-        message = message;
+        this.message = message;
     }
 }
