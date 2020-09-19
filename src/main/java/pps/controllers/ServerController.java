@@ -53,7 +53,7 @@ public class ServerController {
         return "Hello, my world!";
     }
 
-    private static final int APP_VERSION = 6;
+    private static final int APP_VERSION = 7;
 
     /**
      * Get the version of the application.
