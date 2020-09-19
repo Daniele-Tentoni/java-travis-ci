@@ -51,7 +51,7 @@ public class PuzzleStore {
                                     p.setCurrentPosition(player, q.getCurrentPosition());
                                     q.setCurrentPosition(player, pos);
                                 }));
-        checkSolution();
+        finished = checkSolution();
     }
 
     public void freeTiles(String name) {
@@ -93,9 +93,7 @@ public class PuzzleStore {
         generatePuzzle();
     }
 
-    private void checkSolution() {
-        if (tiles.stream().allMatch(Box::isInRightPlace)) {
-            this.finished = true;
-        }
+    private boolean checkSolution() {
+        return tiles.stream().allMatch(Box::isInRightPlace);
     }
 }
