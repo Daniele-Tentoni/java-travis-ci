@@ -24,9 +24,11 @@ public class ServerController {
     }
 
     @DeleteMapping("/game/reset")
-    public boolean gameReset(){
-        try{
-            PuzzleStore.instance().reset();
+    public boolean gameReset() {
+        try {
+            if (PuzzleStore.instance().isFinished()) {
+                PuzzleStore.instance().reset();
+            }
             return true;
         } catch (Exception ex) {
             return false;
@@ -35,6 +37,7 @@ public class ServerController {
 
     /**
      * Get some useful info about the current context.
+     *
      * @return Infos in a string.
      */
     @GetMapping("/info")
@@ -45,6 +48,7 @@ public class ServerController {
 
     /**
      * Sau hello to the user.
+     *
      * @return Hello !!
      */
     @GetMapping("/hello")
@@ -57,6 +61,7 @@ public class ServerController {
 
     /**
      * Get the version of the application.
+     *
      * @return The Number Vesion.
      */
     @GetMapping("/version")
