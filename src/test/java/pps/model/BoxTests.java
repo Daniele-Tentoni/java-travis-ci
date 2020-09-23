@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("A special test case")
@@ -54,10 +56,10 @@ public class BoxTests {
 
     @Test public void testToString() {
         String msg = "Box{" +
-                "taken=" + false +
+                "taken=" + Optional.empty() +
                 ", originalPosition=" + 0 +
                 ", currentPosition=" + 0 +
                 '}';
-        assertEquals("", this.box.toString());
+        assertEquals(msg, this.box.toString());
     }
 }
