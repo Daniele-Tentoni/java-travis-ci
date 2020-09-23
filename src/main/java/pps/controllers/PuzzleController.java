@@ -32,7 +32,7 @@ public class PuzzleController {
     }
 
     /**
-     * A player wanna release a tile and unmark that with his name,
+     * A player wanna release a tile and unmark that with his name.
      *
      * @param player Name of the player.
      * @param id     Id of the taken.

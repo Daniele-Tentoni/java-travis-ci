@@ -1,7 +1,7 @@
 package pps.model;
 
 public class ReturnMessage {
-    boolean result;
+    final boolean result;
     String message;
 
     public ReturnMessage(boolean result, String message) {

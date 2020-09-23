@@ -38,7 +38,7 @@ public class ServerController {
     /**
      * Get some useful info about the current context.
      *
-     * @return Infos in a string.
+     * @return Info in a string.
      */
     @GetMapping("/info")
     @ResponseBody
@@ -62,7 +62,7 @@ public class ServerController {
     /**
      * Get the version of the application.
      *
-     * @return The Number Vesion.
+     * @return The Number Version.
      */
     @GetMapping("/version")
     @ResponseBody
